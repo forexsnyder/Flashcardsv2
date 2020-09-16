@@ -26,6 +26,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
 
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
