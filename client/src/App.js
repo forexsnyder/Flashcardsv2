@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
+
 import './App.css';
-import { useHistory } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
-import Login from './screens/Login/Login';
-import Register from './screens/Register/Register';
-import Layout from './layouts/Layout'
+
+import Layout from './layouts/Layout';
+import Login from './screens/Login';
+import Register from './screens/Register';
+
 import { loginUser, registerUser, verifyUser, removeToken } from './services/auth';
+import MainContainer from './containers/MainContainer';
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -13,50 +17,55 @@ function App() {
 
   useEffect(() => {
     const handleVerify = async () => {
-      const currentUser = await verifyUser();
-      setCurrentUser(currentUser);
+      const userData = await verifyUser();
+      setCurrentUser(userData);
+      // history.push('/');
     }
     handleVerify();
   }, [])
 
-  const handleLogin = async (formData) => {
-    const currentUser = await loginUser(formData);
-    setCurrentUser(currentUser);
-    history.push('/')
+  const loginSubmit = async (loginData) => {
+    const userData = await loginUser(loginData);
+    setCurrentUser(userData);
+    history.push('/');
   }
 
-  const handleRegister = async (formData) => {
-    const currentUser = await registerUser(formData);
-    setCurrentUser(currentUser);
-    history.push('/')
+  const registerSubmit = async (registerData) => {
+    const userData = await registerUser(registerData);
+    setCurrentUser(userData);
+    history.push('/');
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem('authToken');
     removeToken();
     setCurrentUser(null);
+    history.push('/');
   }
 
-
   return (
-    <div className="App">
-      <Layout
-        currentUser={currentUser}
-        handleLogout={handleLogout}
-      >
-        <Switch>
-          <Route path='/login'>
-            <Login handleLogin={handleLogin} />
-          </Route>
-          <Route path='/register'>
-            <Register handleRegister={handleRegister} />
-          </Route>
-          {/* <Route path='/'> */}
-            {/* <TeachersContainer currentUser={currentUser} /> */}
-          {/* </Route> */}
-        </Switch>
-      </Layout>
-    </div>
+    <Layout
+      currentUser={currentUser}
+      handleLogout={handleLogout}
+    >
+      <Switch>
+        <Route path='/login'>
+          <Login
+            loginSubmit={loginSubmit}
+          />
+        </Route>
+        <Route path='/register'>
+          <Register
+            registerSubmit={registerSubmit}
+          />
+        </Route>
+        <Route path='/'>
+          <MainContainer
+            currentUser={currentUser}
+          />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
