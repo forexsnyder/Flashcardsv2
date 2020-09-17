@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 2020_09_11_182102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "flashcard_set", force: :cascade do |t|
+  create_table "flashcard_sets", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "flashcard_set_flashcards", id: false, force: :cascade do |t|
+  create_table "flashcard_sets_flashcards", id: false, force: :cascade do |t|
     t.bigint "flashcards_id", null: false
     t.bigint "flashcard_sets_id", null: false
   end
@@ -43,5 +43,10 @@ ActiveRecord::Schema.define(version: 2020_09_11_182102) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comments", force :cascade do |t|
+    t.text "comment"
+    t.index ["user_id"]
+
   add_foreign_key "flashcards", "users"
+  
 end

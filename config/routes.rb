@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :flavors, only: :index
   resources :foods
   post '/auth/login', to: 'authentication#login'

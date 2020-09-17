@@ -6,5 +6,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }
 
-  has_many :foods
+  has_many :flashcard_sets
+  has_many :flashcards
+  has_many :comments
 end
