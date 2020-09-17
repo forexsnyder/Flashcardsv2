@@ -1,16 +1,16 @@
 import React from 'react'
-import Header from '../components/Header/Header'
+import Header from '../components/Header'
 
 export default function Layout(props) {
-  const { currentUser, handleLogout } = props;
-
   return (
-    <div>
+    <>
       <Header
-        currentUser={currentUser}
-        handleLogout={handleLogout}
+        currentUser={props.currentUser}
+        handleLogout={props.handleLogout}
       />
-      {props.children}
-    </div>
+      <main>
+        {props.children}
+      </main>
+    </>
   )
 }
