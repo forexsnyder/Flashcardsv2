@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 2020_09_11_182102) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "flashcard_sets_flashcards", id: false, force: :cascade do |t|
-    t.bigint "flashcards_id", null: false
-    t.bigint "flashcard_sets_id", null: false
-  end
+  # create_table "flashcard_sets_flashcards", id: false, force: :cascade do |t|
+  #   t.bigint "flashcards_id", null: false
+  #   t.bigint "flashcard_sets_id", null: false
+  # end
 
   create_table "flashcards", force: :cascade do |t|
     t.string "front"
@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 2020_09_11_182102) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.index ["user_id"]
+  end
 
   add_foreign_key "flashcards", "users"
+
   
 end
