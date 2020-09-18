@@ -7,6 +7,7 @@ import Foods from '../screens/Foods';
 import FoodEdit from '../screens/FoodEdit';
 import FoodDetail from '../screens/FoodDetail';
 import FoodCreate from '../screens/FoodCreate';
+import LandingPage from "../screens/landingPage/LandingPage";
 
 export default function MainContainer(props) {
   const [flavors, setFlavors] = useState([]);
@@ -61,6 +62,9 @@ export default function MainContainer(props) {
         <FoodDetail
           flavors={flavors}
         />
+        <Route path='/landingpage'>
+        <LandingPage />
+        </Route>
       </Route>
       <Route path='/flavors'>
         <Flavors

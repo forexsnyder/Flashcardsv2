@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_09_11_182102) do
 
   create_table "flashcards", force: :cascade do |t|
     t.string "name"
+    t.text "front"
+    t.text "back"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
