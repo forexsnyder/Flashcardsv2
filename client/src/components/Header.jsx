@@ -5,7 +5,7 @@ export default function Header(props) {
   const { currentUser } = props;
   return (
     <header>
-      <h1>Tasteville</h1>
+      <h1>Flashcards</h1>
       {
         currentUser ?
           <div>

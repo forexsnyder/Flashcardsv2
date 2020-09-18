@@ -7,6 +7,7 @@ import Layout from './layouts/Layout';
 import Login from './screens/Login';
 import Register from './screens/Register';
 
+
 import { loginUser, registerUser, verifyUser, removeToken } from './services/auth';
 import MainContainer from './containers/MainContainer';
 
@@ -19,7 +20,7 @@ function App() {
     const handleVerify = async () => {
       const userData = await verifyUser();
       setCurrentUser(userData);
-      // history.push('/');
+      
     }
     handleVerify();
   }, [])
@@ -53,6 +54,7 @@ function App() {
           <Login
             loginSubmit={loginSubmit}
           />
+          
         </Route>
         <Route path='/register'>
           <Register
@@ -64,6 +66,7 @@ function App() {
             currentUser={currentUser}
           />
         </Route>
+        
       </Switch>
     </Layout>
   );
